@@ -27,7 +27,7 @@ requirements:
         - python
     - if: linux
       then:
-      - libgomp
+        - libgomp
     - if: osx
       then:
         - libomp
@@ -60,7 +60,7 @@ about:
   homepage: https://github.com/wannesm/dtaidistance
   summary: 'Distance measures for time series (Dynamic Time Warping, fast C implementation)'
   license: Apache-2.0
-  license_file: LICENSE.txt
+  license_file: LICENSE
   documentation: https://dtaidistance.readthedocs.io/en/latest/
   repository: https://github.com/wannesm/dtaidistance
 
