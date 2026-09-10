@@ -7,7 +7,7 @@ Home: https://github.com/wannesm/dtaidistance
 
 Package license: Apache-2.0
 
-Summary: Distance measures for time series
+Summary: Distance measures for time series (Dynamic Time Warping, fast C implementation)
 
 Development: https://github.com/wannesm/dtaidistance
 
