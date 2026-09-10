@@ -8,12 +8,12 @@ package:
 source:
   url: https://pypi.org/packages/source/d/dtaidistance/dtaidistance-${{ version }}.tar.gz
   sha256: 4a87f5023d41e6b4e14b9e4001f3c316393e2b6be3f5efd776129cfcc701b4af
+  patches:
+    - force-cythonize.patch
 
 build:
   script: python -m pip install . -vv
   number: 0
-  patches:
-    - force-cythonize.patch
 
 requirements:
   build:
