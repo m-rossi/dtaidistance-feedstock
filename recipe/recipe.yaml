@@ -1,0 +1,70 @@
+context:
+  version: "2.5.0"
+
+package:
+  name: dtaidistance
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/d/dtaidistance/dtaidistance-${{ version }}.tar.gz
+  sha256: 4a87f5023d41e6b4e14b9e4001f3c316393e2b6be3f5efd776129cfcc701b4af
+  patches:
+    - force-cythonize.patch
+
+build:
+  script: python -m pip install . -vv
+  number: 1
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - if: build_platform != target_platform
+      then:
+        - cross-python_${{ target_platform }}
+        - cython
+        - numpy
+        - python
+    - if: linux
+      then:
+        - libgomp
+    - if: osx
+      then:
+        - llvm-openmp
+  host:
+    - cython
+    - numpy
+    - pip
+    - python
+    - setuptools
+    - wheel
+  run:
+    - matplotlib-base >=3.0.0
+    - numpy
+    - python
+    - scipy
+
+tests:
+  - python:
+      imports:
+        - dtaidistance
+        - dtaidistance.clustering
+        - dtaidistance.dtw
+        - dtaidistance.dtw_cc
+        - dtaidistance.dtw_cc_numpy
+        - dtaidistance.dtw_cc_omp
+        - dtaidistance.ed_cc
+      pip_check: true
+
+about:
+  homepage: https://github.com/wannesm/dtaidistance
+  summary: 'Distance measures for time series (Dynamic Time Warping, fast C implementation)'
+  license: Apache-2.0
+  license_file: LICENSE
+  documentation: https://dtaidistance.readthedocs.io/en/latest/
+  repository: https://github.com/wannesm/dtaidistance
+
+extra:
+  recipe-maintainers:
+    - m-rossi
+    - wannesm
