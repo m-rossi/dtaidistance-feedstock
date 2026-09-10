@@ -30,7 +30,7 @@ requirements:
         - libgomp
     - if: osx
       then:
-        - libomp
+        - llvm-openmp
   host:
     - cython
     - numpy
